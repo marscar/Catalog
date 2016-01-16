@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="row divider green">
+	<div class="col-md-12"></div>
+</div>
+
+<div class="row banner menu">
+	<div class="col-md-11 col-md-offset-1 padding-none">
+		<h2> New Room in</h2>
+		<h3 style="margin-bottom:0; display:inline" >
+			Ref. {{listing.id}} - 
+		</h3>
+		<h2 style="margin-bottom:0; display:inline" >    
+			{{listing.address}}
+		</h2>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-1 padding-top">
+		<form action='#' method = 'POST'>
+			<div class="form-group">
+				<p>
+					<label for="rtype">Type* (Prevent typos, double click for suggestions):</label>
+					<input list="rtype" class="form-control" name='rtype' required>
+					<datalist id="rtype">
+					  <option value="bathroom">
+					  <option value="bedroom">
+					  <option value="garage">
+					  <option value="half bathroom">
+					  <option value="kitchen">
+					</datalist>
+				</p>
+
+				<p>
+					<label for="floor">Floor* (0 for basement):</label>
+					<input type ="number" class="form-control" name="floor" min="0" max="99"  value="1" required >
+				</p>
+
+				<div class="padding-bottom"></div>
+				<button type="submit" class="btn btn-default" id="submit" type="submit">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Create</button>
+
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+			</div>
+		</form>
+		<a href = '{{url_for('showListings')}}'>
+			<button class="btn btn-default delete">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+		</a>
+	</div>
+</div>
+{% endblock %}

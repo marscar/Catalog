@@ -1,0 +1,87 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+	<div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right"></div>
+	</div>
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Audacity Real Estate</h1>
+		</div>
+	</div>
+
+
+<div class = 'flash'>
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		<ul>
+			{% for message in messages %}
+				<li><strong>{{message}}</strong></li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endwith %}
+</div>
+
+<div class="row padding-top padding-bottom">
+</div>
+
+{% for i in listings %}
+	<a href='{{ url_for('showRoom', listing_id=i.id) }}'>
+			<div class="row">
+				<div class="col-md-4">
+					<figure>
+						<object data="{{i.picture}}", class="img-responsive pull-left">
+							<img src="{{ url_for('static', filename='house_placeholder.jpg') }}", class="img-responsive pull-left" >
+							</object>
+						</figure>
+				</div>
+				<div class="col-md-7 restaurant-list">
+					<h5 style="margin-bottom:0; display:inline" >
+					Ref.{{i.id}}
+					</h5>
+					<h3 style="margin-bottom:0; display:inline; text-align: center;" >
+					<center>
+					{{i.address}}</center>
+					</h3>
+					</br>
+					<h4 style="margin-bottom:0; display:inline" >Type: {{i.type_}}, Area code: {{i.zip_}}</h4>
+					</br>
+					{{ ['No description available', i.description][ i.description!="" ] }}
+					</br>
+					<strong style="margin-bottom:0; display:inline" >{{ ['contact agent for pricing', '$%d' % i.price][ i.price!=0 ] }}
+					</strong>
+				</div>
+			</div>
+	</a>
+
+
+{% endfor %}
+<div class="row padding-top padding-bottom">
+</div>
+
+<a href='{{ url_for('ListingsJSON') }}'>
+	<button class="btn btn-default" id="new-restaurant">
+		<span class="glyphicon glyphicon-save" aria-hidden="true"></span> JSON 
+	</button>
+</a>
+
+<a href='{{ url_for('listingsRSSFeed') }}'>
+	<button class="btn btn-default" >
+		<span class="glyphicon glyphicon-save" aria-hidden="true"></span> RSS
+	</button>
+</a>
+
+<a href='{{ url_for('ListingsXML') }}'>
+	<button class="btn btn-default" >
+		<span class="glyphicon glyphicon-save" aria-hidden="true"></span> XML
+	</button>
+</a>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>Listing Ref. {{listing.id}}</title>
+		<link>http://http://localhost:8000/listing/{{listing.id}}/room/roomRSS/</link>
+		<description>Listing Ref. {{listing.id}} from Audacity real estate</description>
+		<language>en-us</language>
+		<managingEditor>marcelloscarnecchia@gmail.com</managingEditor>
+
+		<item>
+			<title>Ref. {{listing.id}}</title>
+			<description>	
+				&quot;id&quot;: {{listing.id}}&lt;/br&gt;
+				&quot;address&quot;: &quot;{{listing.address}}&quot;&lt;/br&gt;
+				&quot;style&quot;: &quot;{{listing.type_}}&quot;&lt;/br&gt;
+				&quot;location&quot;: &quot;{{listing.zip_}}&quot;&lt;/br&gt;
+				&quot;picture&quot;: &lt;a href=&quot;{{listing.picture}}&quot;&gt;{{listing.picture}}&lt;/a&gt;&lt;/br&gt;
+				&quot;description&quot;: &quot;{{listing.description}}&quot;&lt;/br&gt;
+				</description>
+			</item>
+
+		<item>
+			<title>Rooms</title>
+			</item>
+
+		{% for i in rooms %}
+		<item>
+			<description>	
+				&quot;id&quot;: {{i.id}}&lt;/br&gt;
+				&quot;type&quot;: &quot;{{i.type_}}&quot;&lt;/br&gt;
+				&quot;floor&quot;: {{i.floor}}&lt;/br&gt;
+				&lt;/br&gt;
+				</description>
+			</item>
+		{% endfor %}
+
+		</channel>
+	</rss>

@@ -137,8 +137,7 @@ ref9 = Listing(user_id=1,
                description="Heartland Village - Beautiful 1 bedroom condo in "
                "excellent condition. Featuring gorgeous balcony views, great "
                "community amenities including large pool, clubhouse, "
-               "playground, tennis & basketball courts, plenty of parking & "
-               "more. Located close to shopping, parks & transportation.",
+               "playground, tennis courts.",
                price=235000, zip_='10305')
 
 session.add(ref9)
